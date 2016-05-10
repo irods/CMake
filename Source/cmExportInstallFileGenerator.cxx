@@ -118,6 +118,9 @@ bool cmExportInstallFileGenerator::GenerateMainFile(std::ostream& os)
         "get_filename_component(_IMPORT_PREFIX \"${_IMPORT_PREFIX}\" PATH)\n";
       dest = cmSystemTools::GetFilenamePath(dest);
       }
+    os << "if(\"${_IMPORT_PREFIX}\" STREQUAL \"/\")\n"
+       << "  set(_IMPORT_PREFIX \"\")\n"
+       << "endif()\n";
     os << "\n";
     }
 
